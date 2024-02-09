@@ -16,7 +16,7 @@ data "vsphere_datacenter" "pclab" {
 }
 
 data "vsphere_datastore" "datastore1" {
-  name          = "datastore1"
+  name          = "datastore2"
   datacenter_id = data.vsphere_datacenter.pclab.id
 }
 
@@ -39,9 +39,12 @@ resource "vsphere_virtual_machine" "vm1" {
   num_cpus         = 2
   memory           = 4096
   guest_id         = "other3xLinux64Guest"
+  wait_for_guest_ip_timeout = -1
+  wait_for_guest_net_routable = false
+  wait_for_guest_net_timeout = -1
   network_interface {
     network_id   = data.vsphere_network.network.id
-    adapter_type = "vmxnet3"
+   ### adapter_type = "vmxnet3"
   }
   disk {
     label            = "disk0"
@@ -59,9 +62,12 @@ resource "vsphere_virtual_machine" "vm2" {
   num_cpus         = 2
   memory           = 4096
   guest_id         = "other3xLinux64Guest"
+  wait_for_guest_ip_timeout = -1
+  wait_for_guest_net_routable = false
+  wait_for_guest_net_timeout = -1
   network_interface {
     network_id   = data.vsphere_network.network.id
-    adapter_type = "vmxnet3"
+   ## adapter_type = "vmxnet3"
   }
   disk {
     label            = "disk0"
@@ -79,9 +85,12 @@ resource "vsphere_virtual_machine" "vm3" {
   num_cpus         = 2
   memory           = 4096
   guest_id         = "other3xLinux64Guest"
+  wait_for_guest_ip_timeout = -1
+  wait_for_guest_net_routable = false
+  wait_for_guest_net_timeout = -1
   network_interface {
     network_id   = data.vsphere_network.network.id
-    adapter_type = "vmxnet3"
+    ## adapter_type = "vmxnet3"
   }
   disk {
     label            = "disk0"
@@ -91,3 +100,6 @@ resource "vsphere_virtual_machine" "vm3" {
   }
   scsi_type = "lsilogic-sas"
 }
+
+
+### For each to refactor
